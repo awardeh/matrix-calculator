@@ -44,6 +44,7 @@ function Multiply(m1, m2) {
             product[i][j] = temp;
         }
     }
+    console.log(product);
     return product;
 }
 
@@ -223,8 +224,8 @@ OPTIONS.addEventListener("change", () => {
                 generateInput(document.getElementById(COLS_OF_B), 1, 10);
 
                 let option = document.createElement("option");
-                option.value = document.getElementById(ROWS_OF_A).value;
-                option.text = document.getElementById(ROWS_OF_A).value;
+                option.value = document.getElementById(COLS_OF_A).value;
+                option.text = document.getElementById(COLS_OF_A).value;
                 document.getElementById(ROWS_OF_B).append(option);
 
                 let button = document.createElement("button");
@@ -246,7 +247,8 @@ OPTIONS.addEventListener("change", () => {
                         clear(RESULT);
                         let m1 = to2DArray(MATRIX1, document.getElementById(ROWS_OF_A).value, document.getElementById(COLS_OF_A).value);
                         let m2 = to2DArray(MATRIX2, document.getElementById(ROWS_OF_B).value, document.getElementById(COLS_OF_B).value);
-                        RESULT.innerText = (matrixToString(Multiply(m1, m2)));
+                        console.log(m1, m2);
+                        RESULT.innerText = matrixToString(Multiply(m1, m2));
                     }
 
                 }
@@ -307,8 +309,6 @@ OPTIONS.addEventListener("change", () => {
                 document.getElementById(CALCULATE).onclick = () => {
                     let m = to2DArray(MATRIX1, document.getElementById(ROWS_OF_A).value, document.getElementById(COLS_OF_A).value);
                     let result = cofactor(m, document.getElementById(ROWS_OF_B).value - 1, document.getElementById(COLS_OF_B).value - 1);
-                    console.log(result);
-                    console.log(m);
                     RESULT.innerText = matrixToString(result);
 
                 }
