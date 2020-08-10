@@ -44,7 +44,6 @@ function Multiply(m1, m2) {
             product[i][j] = temp
         }
     }
-    console.log(product)
     return product
 }
 
@@ -123,7 +122,6 @@ function cofactor(m, row, col) {
         }
         k++
     }
-    console.log(values)
     return values
 }
 
@@ -255,7 +253,6 @@ OPTIONS.addEventListener('change', () => {
                         clear(RESULT)
                         let m1 = to2DArray(MATRIX1, rowsA, colsA)
                         let m2 = to2DArray(MATRIX2, rowsB, colsB)
-                        console.log(m1, m2)
                         RESULT.innerText = matrixToString(Multiply(m1, m2))
                     }
 
