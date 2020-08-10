@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Matrix Calculator</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="antialiased bg-cool-gray-100 text-cool-gray-900">
+<div class="max-w-xl w-full mx-auto py-6 px-6">
+    <div class="p-6 rounded-lg shadow-xl bg-white">
+        <h1 class="font-semibold text-2xl text-center">Matrix Calculator</h1>
+
+        <label for="options" class="sr-only">
+            Choose an option
+        </label>
+
+        <select class="select" name="options" id="options">
+            <option selected="selected" disabled="disabled">
+                Choose an option
+            </option>
+
+            <option value="Multiply">Multiply</option>
+            <option value="Add">Add</option>
+            <option value="Determinant">Determinant</option>
+        </select>
+
+        <div id="input-row-col1"></div>
+        <div id="matrix1"></div>
+        <div id="input-row-col2"></div>
+        <div id="matrix2"></div>
+        <div id="submit"></div>
+        <div id="result"></div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="js/app.js"></script>
+</html>
