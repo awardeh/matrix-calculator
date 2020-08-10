@@ -3,8 +3,9 @@ const INPUT1 = document.getElementById('input-row-col1')
 const INPUT2 = document.getElementById('input-row-col2')
 const MATRIX1 = document.getElementById('matrix1')
 const MATRIX2 = document.getElementById('matrix2')
-const ADD = 'Add'
+const SUBMIT = document.getElementById('submit')
 const RESULT = document.getElementById('result')
+const ADD = 'Add'
 const MULTIPLY = 'Multiply'
 const DETERMINANT = 'Determinant'
 const COFACTOR = 'Cofactor'
@@ -12,7 +13,6 @@ const ROWS_OF_A = 'rows-of-input-row-col1'
 const COLS_OF_A = 'cols-of-input-row-col1'
 const ROWS_OF_B = 'rows-of-input-row-col2'
 const COLS_OF_B = 'cols-of-input-row-col2'
-const SUBMIT = document.getElementById('submit')
 const CALCULATE = 'calculate'
 
 function clearAll() {
