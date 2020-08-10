@@ -1,212 +1,212 @@
-const OPTIONS = document.getElementById("options");
-const INPUT1 = document.getElementById("input-row-col1");
-const INPUT2 = document.getElementById("input-row-col2");
-const MATRIX1 = document.getElementById("matrix1");
-const MATRIX2 = document.getElementById("matrix2");
-const ADD = "Add"
-const RESULT = document.getElementById("result");
-const MULTIPLY = "Multiply";
-const DETERMINANT = "Determinant";
-const COFACTOR = "Cofactor";
-const ROWS_OF_A = "rows-of-input-row-col1";
-const COLS_OF_A = "cols-of-input-row-col1";
-const ROWS_OF_B = "rows-of-input-row-col2";
-const COLS_OF_B = "cols-of-input-row-col2";
-const SUBMIT = document.getElementById("submit");
-const CALCULATE = "calculate";
+const OPTIONS = document.getElementById('options')
+const INPUT1 = document.getElementById('input-row-col1')
+const INPUT2 = document.getElementById('input-row-col2')
+const MATRIX1 = document.getElementById('matrix1')
+const MATRIX2 = document.getElementById('matrix2')
+const ADD = 'Add'
+const RESULT = document.getElementById('result')
+const MULTIPLY = 'Multiply'
+const DETERMINANT = 'Determinant'
+const COFACTOR = 'Cofactor'
+const ROWS_OF_A = 'rows-of-input-row-col1'
+const COLS_OF_A = 'cols-of-input-row-col1'
+const ROWS_OF_B = 'rows-of-input-row-col2'
+const COLS_OF_B = 'cols-of-input-row-col2'
+const SUBMIT = document.getElementById('submit')
+const CALCULATE = 'calculate'
 
 function clearAll() {
-    clear(RESULT);
-    clear(MATRIX1);
-    clear(MATRIX2);
-    clear(INPUT1);
-    clear(INPUT2);
-    clear(SUBMIT);
+    clear(RESULT)
+    clear(MATRIX1)
+    clear(MATRIX2)
+    clear(INPUT1)
+    clear(INPUT2)
+    clear(SUBMIT)
 }
 
 function clearSecond() {
-    clear(SUBMIT);
-    clear(INPUT2);
-    clear(RESULT);
-    clear(MATRIX1);
-    clear(MATRIX2);
+    clear(SUBMIT)
+    clear(INPUT2)
+    clear(RESULT)
+    clear(MATRIX1)
+    clear(MATRIX2)
 }
 
 function Multiply(m1, m2) {
-    let product = [];
+    let product = []
     for (let i = 0; i < m1.length; i++) {
-        product[i] = [];
+        product[i] = []
         for (let j = 0; j < m2[0].length; j++) {
-            let temp = 0;
+            let temp = 0
             for (let k = 0; k < m2.length; k++) {
-                temp += m1[i][k] * m2[k][j];
+                temp += m1[i][k] * m2[k][j]
             }
-            product[i][j] = temp;
+            product[i][j] = temp
         }
     }
-    console.log(product);
-    return product;
+    console.log(product)
+    return product
 }
 
 function Add(m1, m2) {
-    let sum = [];
+    let sum = []
     for (let i = 0; i < m1.length; i++) {
-        sum[i] = [];
+        sum[i] = []
         for (let j = 0; j < m1[0].length; j++) {
-            sum[i][j] = m1[i][j] + m2[i][j];
+            sum[i][j] = m1[i][j] + m2[i][j]
         }
     }
-    return sum;
+    return sum
 }
 
 
 function generateInput(selector, min = 1, max = 10) {
     while (min <= max) {
-        let option = document.createElement("option");
-        option.value = min.toString();
-        option.text = min.toString();
-        selector.append(option);
-        min++;
+        let option = document.createElement('option')
+        option.value = min.toString()
+        option.text = min.toString()
+        selector.append(option)
+        min++
     }
 }
 
 function generateMatrix(input, min = 1, max = 10) {
-    generateRowCol(input);
-    generateInput(document.getElementById("rows-of-" + input.id), min, max);
-    generateInput(document.getElementById("cols-of-" + input.id), min, max);
-    let button = document.createElement("button");
-    button.id = "next-" + input.id;
-    button.textContent = "next";
-    input.append(button);
+    generateRowCol(input)
+    generateInput(document.getElementById('rows-of-' + input.id), min, max)
+    generateInput(document.getElementById('cols-of-' + input.id), min, max)
+    let button = document.createElement('button')
+    button.id = 'next-' + input.id
+    button.textContent = 'next'
+    input.append(button)
 }
 
 function clear(input) {
-    while (input.firstChild) input.removeChild(input.firstChild);
+    while (input.firstChild) input.removeChild(input.firstChild)
 }
 
 function generateMatrixInput(row, col, div) {
     for (let n = 1; n <= row; n++) {
-        let row_div = document.createElement("div");
-        row_div.id = div.id + "_" + "row_" + n;
-        div.append(row_div);
+        let row_div = document.createElement('div')
+        row_div.id = div.id + '_' + 'row_' + n
+        div.append(row_div)
     }
 
     for (let n = 1; n <= row; n++) {
         for (let m = 1; m <= col; m++) {
-            let textField = document.createElement("input");
-            textField.type = "number";
-            textField.value = '0';
-            document.getElementById(div.id + "_" + "row_" + n).append(textField);
+            let textField = document.createElement('input')
+            textField.type = 'number'
+            textField.value = '0'
+            document.getElementById(div.id + '_' + 'row_' + n).append(textField)
         }
     }
 }
 
 function generateSubmit(text) {
-    let calculate = document.createElement("button");
-    calculate.innerText = text;
-    calculate.id = "calculate";
-    SUBMIT.append(calculate);
+    let calculate = document.createElement('button')
+    calculate.innerText = text
+    calculate.id = 'calculate'
+    SUBMIT.append(calculate)
 }
 
 function cofactor(m, row, col) {
-    let rows = m.length;
-    let columns = m[0].length;
-    let k = 0;
-    let values = [];
+    let rows = m.length
+    let columns = m[0].length
+    let k = 0
+    let values = []
     for (let i = 0; i < rows; i++) {
-        if (i === row) continue;
-        let l = 0;
-        values[k] = [];
+        if (i === row) continue
+        let l = 0
+        values[k] = []
         for (let j = 0; j < columns; j++) {
-            if (j === col) continue;
-            values[k][l++] = m[i][j];
+            if (j === col) continue
+            values[k][l++] = m[i][j]
         }
-        k++;
+        k++
     }
-    console.log(values);
-    return values;
+    console.log(values)
+    return values
 }
 
 function determinant(m) {
-    if (m.length === 1 && m[0].length === 1) return m[0][0];
+    if (m.length === 1 && m[0].length === 1) return m[0][0]
 
     if (m.length === 2) {
-        return (m[0][0] * m[1][1]) - (m[0][1] * m[1][0]);
+        return (m[0][0] * m[1][1]) - (m[0][1] * m[1][0])
     }
 
-    let result = 0;
+    let result = 0
     for (let i = 0; i < m.length; i++) {
-        result += m[0][i] * determinant(cofactor(m, 0, i)) * Math.pow(-1, i);
+        result += m[0][i] * determinant(cofactor(m, 0, i)) * Math.pow(-1, i)
     }
-    return result;
+    return result
 
 
 }
 
 function to2DArray(div, row, col) {
-    let values_of_m = [];
-    let m = [];
+    let values_of_m = []
+    let m = []
     for (let i = 1; i <= row; i++) {
-        let row_of_m = document.getElementById(div.id + "_" + "row_" + i).getElementsByTagName("input");
+        let row_of_m = document.getElementById(div.id + '_' + 'row_' + i).getElementsByTagName('input')
         for (let j = 0; j < row_of_m.length; j++) {
-            values_of_m.push(parseInt(row_of_m[j].value));
+            values_of_m.push(parseInt(row_of_m[j].value))
         }
     }
-    while (values_of_m.length) m.push(values_of_m.splice(0, col));
-    return m;
+    while (values_of_m.length) m.push(values_of_m.splice(0, col))
+    return m
 
 }
 
 function matrixToString(m) {
-    let result = "";
+    let result = ''
     for (let i = 0; i < m.length; i++) {
-        result += m[i].toString().replace(/,/gi, " ") + "\n";
+        result += m[i].toString().replace(/,/gi, ' ') + '\n'
     }
-    return result;
+    return result
 }
 
 function generateRowCol(div) {
-    let row = document.createElement("select");
-    let col = document.createElement("select");
-    row.setAttribute("id", "rows-of-" + div.id);
-    col.setAttribute("id", "cols-of-" + div.id);
-    div.append(row, col);
+    let row = document.createElement('select')
+    let col = document.createElement('select')
+    row.setAttribute('id', 'rows-of-' + div.id)
+    col.setAttribute('id', 'cols-of-' + div.id)
+    div.append(row, col)
 }
 
-OPTIONS.addEventListener("change", () => {
-        clearAll();
+OPTIONS.addEventListener('change', () => {
+        clearAll()
 
         /*
         ADD
          */
 
         if (OPTIONS.value === ADD) {
-            generateMatrix(INPUT1);
-            document.getElementById("next-" + INPUT1.id).onclick = () => {
-                clearSecond();
-                generateRowCol(INPUT2);
-                let rowsA = document.getElementById(ROWS_OF_A).value;
-                let colsA = document.getElementById(COLS_OF_A).value;
+            generateMatrix(INPUT1)
+            document.getElementById('next-' + INPUT1.id).onclick = () => {
+                clearSecond()
+                generateRowCol(INPUT2)
+                let rowsA = document.getElementById(ROWS_OF_A).value
+                let colsA = document.getElementById(COLS_OF_A).value
 
-                let option = document.createElement("option");
-                option.value = document.getElementById(ROWS_OF_A).value;
-                option.text = document.getElementById(ROWS_OF_A).value;
+                let option = document.createElement('option')
+                option.value = document.getElementById(ROWS_OF_A).value
+                option.text = document.getElementById(ROWS_OF_A).value
                 document.getElementById(ROWS_OF_B).append(option)
-                option = document.createElement("option");
-                option.value = document.getElementById(COLS_OF_A).value;
-                option.text = document.getElementById(COLS_OF_A).value;
+                option = document.createElement('option')
+                option.value = document.getElementById(COLS_OF_A).value
+                option.text = document.getElementById(COLS_OF_A).value
                 document.getElementById(COLS_OF_B).append(option)
 
-                generateMatrixInput(rowsA, colsA, MATRIX1);
-                generateMatrixInput(rowsA, colsA, MATRIX2);
+                generateMatrixInput(rowsA, colsA, MATRIX1)
+                generateMatrixInput(rowsA, colsA, MATRIX2)
 
-                generateSubmit("Add");
+                generateSubmit('Add')
 
                 document.getElementById(CALCULATE).onclick = () => {
-                    clear(RESULT);
-                    let m1 = to2DArray(MATRIX1, document.getElementById(ROWS_OF_A).value, document.getElementById(COLS_OF_A).value);
-                    let m2 = to2DArray(MATRIX2, document.getElementById(ROWS_OF_B).value, document.getElementById(COLS_OF_B).value);
-                    RESULT.innerText = (matrixToString(Add(m1, m2)));
+                    clear(RESULT)
+                    let m1 = to2DArray(MATRIX1, document.getElementById(ROWS_OF_A).value, document.getElementById(COLS_OF_A).value)
+                    let m2 = to2DArray(MATRIX2, document.getElementById(ROWS_OF_B).value, document.getElementById(COLS_OF_B).value)
+                    RESULT.innerText = (matrixToString(Add(m1, m2)))
                 }
             }
         }
@@ -216,47 +216,47 @@ OPTIONS.addEventListener("change", () => {
          */
         if (OPTIONS.value === MULTIPLY) {
 
-            generateMatrix(INPUT1);
+            generateMatrix(INPUT1)
 
-            document.getElementById("next-" + INPUT1.id).onclick = () => {
-                clearSecond();
-                document.getElementById("next-" + INPUT1.id).innerText = "refresh";
+            document.getElementById('next-' + INPUT1.id).onclick = () => {
+                clearSecond()
+                document.getElementById('next-' + INPUT1.id).innerText = 'refresh'
 
-                let rowsA = document.getElementById(ROWS_OF_A).value;
-                let colsA = document.getElementById(COLS_OF_A).value;
+                let rowsA = document.getElementById(ROWS_OF_A).value
+                let colsA = document.getElementById(COLS_OF_A).value
 
-                generateRowCol(INPUT2);
-                generateInput(document.getElementById(COLS_OF_B), 1, 10);
+                generateRowCol(INPUT2)
+                generateInput(document.getElementById(COLS_OF_B), 1, 10)
 
-                let option = document.createElement("option");
-                option.value = colsA;
-                option.text = colsA;
-                document.getElementById(ROWS_OF_B).append(option);
+                let option = document.createElement('option')
+                option.value = colsA
+                option.text = colsA
+                document.getElementById(ROWS_OF_B).append(option)
 
-                let button = document.createElement("button");
-                button.setAttribute("id", "next2");
-                button.textContent = "next";
-                INPUT2.append(button);
+                let button = document.createElement('button')
+                button.setAttribute('id', 'next2')
+                button.textContent = 'next'
+                INPUT2.append(button)
 
-                generateMatrixInput(rowsA, colsA, MATRIX1);
+                generateMatrixInput(rowsA, colsA, MATRIX1)
 
                 button.onclick = () => {
-                    clear(MATRIX2);
-                    clear(SUBMIT);
+                    clear(MATRIX2)
+                    clear(SUBMIT)
 
-                    let rowsB = document.getElementById(ROWS_OF_B).value;
-                    let colsB = document.getElementById(COLS_OF_B).value;
+                    let rowsB = document.getElementById(ROWS_OF_B).value
+                    let colsB = document.getElementById(COLS_OF_B).value
 
-                    button.textContent = "refresh";
-                    generateMatrixInput(rowsB, colsB, MATRIX2);
+                    button.textContent = 'refresh'
+                    generateMatrixInput(rowsB, colsB, MATRIX2)
 
-                    generateSubmit("Multiply");
+                    generateSubmit('Multiply')
                     document.getElementById(CALCULATE).onclick = () => {
-                        clear(RESULT);
-                        let m1 = to2DArray(MATRIX1, rowsA, colsA);
-                        let m2 = to2DArray(MATRIX2, rowsB, colsB);
-                        console.log(m1, m2);
-                        RESULT.innerText = matrixToString(Multiply(m1, m2));
+                        clear(RESULT)
+                        let m1 = to2DArray(MATRIX1, rowsA, colsA)
+                        let m2 = to2DArray(MATRIX2, rowsB, colsB)
+                        console.log(m1, m2)
+                        RESULT.innerText = matrixToString(Multiply(m1, m2))
                     }
 
                 }
@@ -267,70 +267,71 @@ OPTIONS.addEventListener("change", () => {
         DETERMINANT
          */
         if (OPTIONS.value === DETERMINANT) {
-            let selector = document.createElement("select");
-            selector.id = ROWS_OF_A;
-            selector.setAttribute("id", ROWS_OF_A);
-            generateInput(selector);
+            let selector = document.createElement('select')
+            selector.id = ROWS_OF_A
+            selector.setAttribute('id', ROWS_OF_A)
+            generateInput(selector)
 
-            let button = document.createElement("button");
-            button.innerText = "next";
+            let button = document.createElement('button')
+            button.innerText = 'next'
 
-            let selector2 = document.createElement("select");
-            selector2.id = COLS_OF_A;
-            INPUT1.append(selector, selector2, button);
+            let selector2 = document.createElement('select')
+            selector2.id = COLS_OF_A
+            INPUT1.append(selector, selector2, button)
 
             button.onclick = () => {
-                clear(MATRIX1);
-                clear(selector2);
-                clear(SUBMIT);
-                let rowsA = document.getElementById(ROWS_OF_A).value;
-                let colsA = document.getElementById(COLS_OF_A).value;
+                clear(MATRIX1)
+                clear(selector2)
+                clear(SUBMIT)
+                let rowsA = document.getElementById(ROWS_OF_A).value
 
-                let option = document.createElement("option");
-                option.value = rowsA;
-                option.text = rowsA;
-                selector2.append(option);
+                let option = document.createElement('option')
+                option.value = rowsA
+                option.text = rowsA
+                selector2.append(option)
 
-                generateMatrixInput(rowsA, colsA, MATRIX1);
-                generateSubmit("get determinant");
+                let colsA = document.getElementById(COLS_OF_A).value
+
+                generateMatrixInput(rowsA, colsA, MATRIX1)
+                generateSubmit('get determinant')
 
                 document.getElementById(CALCULATE).onclick = () => {
 
-                    clear(RESULT);
-                    let m1 = to2DArray(MATRIX1, rowsA, colsA);
-                    RESULT.append(determinant(m1));
+                    clear(RESULT)
+                    let m1 = to2DArray(MATRIX1, rowsA, colsA)
+                    RESULT.append(determinant(m1))
                 }
             }
         }
 
         if (OPTIONS.value === COFACTOR) {
-            generateMatrix(INPUT1, 2);
-            document.getElementById("next-" + INPUT1.id).onclick = () => {
-                clear(MATRIX1);
-                clear(INPUT2);
-                clear(SUBMIT);
+            generateMatrix(INPUT1, 2)
+            document.getElementById('next-' + INPUT1.id).onclick = () => {
+                clear(MATRIX1)
+                clear(INPUT2)
+                clear(SUBMIT)
 
-                let rowsA = document.getElementById(ROWS_OF_A).value;
-                let colsA = document.getElementById(COLS_OF_A).value;
+                let rowsA = document.getElementById(ROWS_OF_A).value
+                let colsA = document.getElementById(COLS_OF_A).value
 
-                generateMatrixInput(rowsA, colsA, MATRIX1);
+                generateMatrixInput(rowsA, colsA, MATRIX1)
 
-                generateRowCol(INPUT2);
+                generateRowCol(INPUT2)
 
-                let rowsB = document.getElementById(ROWS_OF_B).value;
-                let colsB = document.getElementById(COLS_OF_B).value;
+                let rowsB = document.getElementById(ROWS_OF_B).value
+                let colsB = document.getElementById(COLS_OF_B).value
 
-                generateInput(rowsB, 1, rowsA);
-                generateInput(colsB, 1, colsA);
-                generateSubmit("get cofactor");
+                generateInput(rowsB, 1, rowsA)
+                generateInput(colsB, 1, colsA)
+                generateSubmit('get cofactor')
 
                 document.getElementById(CALCULATE).onclick = () => {
-                    let m = to2DArray(MATRIX1, rowsA, colsA);
-                    let result = cofactor(m, rowsB - 1, colsB - 1);
-                    RESULT.innerText = matrixToString(result);
+                    let m = to2DArray(MATRIX1, rowsA, colsA)
+                    let result = cofactor(m, rowsB - 1, colsB - 1)
+                    RESULT.innerText = matrixToString(result)
 
                 }
             }
         }
-    }
+    },
 )
