@@ -28,3 +28,27 @@ button:focus {
 button:hover {
     @apply bg-blue-600;
 }
+
+#matrix1,
+#matrix2,
+#result {
+    @apply grid gap-2 grid-cols-3;
+}
+
+#result {
+    @apply mt-4;
+}
+
+#result span {
+    @apply block w-full p-1 text-center border border-gray-300 rounded;
+}
+
+#input-row-col1,
+#input-row-col2 {
+    @apply grid gap-2 grid-cols-2;
+}
+
+#input-row-col1 button,
+#input-row-col2 button {
+    @apply col-span-2;
+}
