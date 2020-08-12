@@ -269,6 +269,40 @@ OPTIONS.addEventListener('change', () => {
                 }
             }
         }
+
+        /**
+         * Cofactor
+         */
+
+        if (OPTIONS.value === COFACTOR) {
+            generateMatrix(INPUT1, 2)
+            document.getElementById('next-' + INPUT1.id).onclick = () => {
+                clear(MATRIX1)
+                clear(INPUT2)
+                clear(SUBMIT)
+
+                let rowsA = document.getElementById(ROWS_OF_A).value
+                let colsA = document.getElementById(COLS_OF_A).value
+
+                generateMatrixInput(rowsA, colsA, MATRIX1)
+
+                generateRowCol(INPUT2)
+
+                let rowsB = document.getElementById(ROWS_OF_B).value
+                let colsB = document.getElementById(COLS_OF_B).value
+
+                generateInput(document.getElementById(ROWS_OF_B), 1, rowsA)
+                generateInput(document.getElementById(COLS_OF_B), 1, colsA)
+                generateSubmit('get cofactor')
+
+                document.getElementById(CALCULATE).onclick = () => {
+                    let m = to2DArray(MATRIX1, rowsA, colsA)
+                    let output = document.createElement('textarea')
+                    output.append(matrixToString(cofactor(m, rowsB - 1, colsB - 1)))
+                    RESULT.append(output)
+                }
+            }
+        }
         /*
             DETERMINANT
              */
@@ -309,35 +343,7 @@ OPTIONS.addEventListener('change', () => {
                 }
             }
 
-            if (OPTIONS.value === COFACTOR) {
-                generateMatrix(INPUT1, 2)
-                document.getElementById('next-' + INPUT1.id).onclick = () => {
-                    clear(MATRIX1)
-                    clear(INPUT2)
-                    clear(SUBMIT)
 
-                    let rowsA = document.getElementById(ROWS_OF_A).value
-                    let colsA = document.getElementById(COLS_OF_A).value
-
-                    generateMatrixInput(rowsA, colsA, MATRIX1)
-
-                    generateRowCol(INPUT2)
-
-                    let rowsB = document.getElementById(ROWS_OF_B).value
-                    let colsB = document.getElementById(COLS_OF_B).value
-
-                    generateInput(document.getElementById(ROWS_OF_B), 1, rowsA)
-                    generateInput(document.getElementById(COLS_OF_B), 1, colsA)
-                    generateSubmit('get cofactor')
-
-                    document.getElementById(CALCULATE).onclick = () => {
-                        let m = to2DArray(MATRIX1, rowsA, colsA)
-                        let output = document.createElement('textarea')
-                        output.append(matrixToString(cofactor(m, rowsB - 1, colsB - 1)))
-                        RESULT.append(output)
-                    }
-                }
-            }
         }
-    }
+    },
 )
