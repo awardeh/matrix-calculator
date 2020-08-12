@@ -338,7 +338,7 @@ OPTIONS.addEventListener('change', () => {
                 document.getElementById(CALCULATE).onclick = () => {
                     clear(RESULT)
                     let output = document.createElement('textarea')
-                    output.append(matrixToString(to2DArray(MATRIX1, rowsA, colsA)))
+                    output.append(determinant((to2DArray(MATRIX1, rowsA, colsA))))
                     RESULT.append(output)
                 }
             }
