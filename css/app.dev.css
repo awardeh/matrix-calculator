@@ -30,17 +30,8 @@ button:hover {
 }
 
 #matrix1,
-#matrix2,
-#result {
-    @apply grid gap-2 grid-cols-3;
-}
-
-#result {
-    @apply mt-4;
-}
-
-#result span {
-    @apply block w-full p-1 text-center border border-gray-300 rounded;
+#matrix2{
+    @apply grid gap-2 grid-cols-10;
 }
 
 #input-row-col1,
@@ -51,4 +42,16 @@ button:hover {
 #input-row-col1 button,
 #input-row-col2 button {
     @apply col-span-2;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
