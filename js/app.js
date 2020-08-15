@@ -213,7 +213,7 @@ OPTIONS.addEventListener('change', () => {
                         document.getElementById(COLS_OF_B).value,
                     )
                     let output = document.createElement('textarea')
-                    output.append(matrixToString(matrixToString(Add(m1, m2))))
+                    output.append(matrixToString(Add(m1, m2)))
                     RESULT.append(output)
 
                 }
@@ -298,6 +298,7 @@ OPTIONS.addEventListener('change', () => {
                 generateSubmit('get cofactor')
 
                 document.getElementById(CALCULATE).onclick = () => {
+                    clear(RESULT);
                     let m = to2DArray(MATRIX1, rowsA, colsA)
                     let output = document.createElement('textarea')
                     output.append(matrixToString(cofactor(m, rowsB - 1, colsB - 1)))

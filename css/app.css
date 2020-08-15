@@ -38629,6 +38629,11 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+textarea{
+  box-sizing: border-box;
+  width: 100%;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
