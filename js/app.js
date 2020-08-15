@@ -86,6 +86,7 @@ function generateMatrixInput(row, col, div) {
     for (let n = 1; n <= row; n++) {
         let row_div = document.createElement('div')
         row_div.id = div.id + '_' + 'row_' + n
+        row_div.className = `grid gap-2 grid-cols-${col}`
         div.append(row_div)
     }
 
@@ -155,9 +156,10 @@ function to2DArray(div, row, col) {
 
 function matrixToString(m) {
     let result = ''
-    for (let i = 0; i < m.length; i++) {
+    for (let i = 0; i < m.length - 1; i++) {
         result += m[i].toString().replace(/,/gi, ' ') + '\n'
     }
+    result += m[m.length-1].toString().replace(/,/gi, ' ')
     return result
 }
 

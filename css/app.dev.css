@@ -29,10 +29,10 @@ button:hover {
     @apply bg-blue-600;
 }
 
-#matrix1,
-#matrix2{
-    @apply grid gap-2 grid-cols-10;
-}
+/*#matrix1,*/
+/*#matrix2{*/
+/*    @apply grid gap-2 grid-cols-10;*/
+/*}*/
 
 #input-row-col1,
 #input-row-col2 {
